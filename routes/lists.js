@@ -3,7 +3,6 @@ const List = require("../models/List");
 const verify = require("../verifyToken");
 
 //CREATE
-
 router.post("/", verify, async (req, res) => {
   if (req.user.isAdmin) {
     const newList = new List(req.body);
@@ -19,7 +18,6 @@ router.post("/", verify, async (req, res) => {
 });
 
 //DELETE
-
 router.delete("/:id", verify, async (req, res) => {
   if (req.user.isAdmin) {
     try {

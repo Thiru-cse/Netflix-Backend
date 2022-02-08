@@ -1,4 +1,5 @@
 const express = require("express");
+const cors = require("cors");
 const app = express();
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
@@ -8,6 +9,13 @@ const movieRoute = require("./routes/movies");
 const listRoute = require("./routes/lists");
 
 dotenv.config();
+app.use(
+    cors({
+      origin: "*",
+    })
+  );
+
+app.use(express.json());
 
 mongoose
   .connect(process.env.MONGO_URL, {
@@ -18,8 +26,6 @@ mongoose
   .catch((err) => {
     console.error(err);
   });
-
-app.use(express.json());
 
 app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
