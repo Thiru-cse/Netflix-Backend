@@ -9,6 +9,11 @@ const movieRoute = require("./routes/movies");
 const listRoute = require("./routes/lists");
 
 dotenv.config();
+app.use(
+    cors({
+      origin: "*",
+    })
+  );
 app.use(express.json());
 
 mongoose
@@ -21,7 +26,6 @@ mongoose
     console.error(err);
   });
 
-app.use(cors());
 app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
 app.use("/api/movies", movieRoute);
